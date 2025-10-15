@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Portal Stream&Criação</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+  background:#080808;color:#f0f0f0;font-family:'Poppins',sans-serif;
+  overflow-x:hidden;scroll-behavior:smooth;
+}
+
+/* HEADER */
+header{
+  position:fixed;top:0;left:0;width:100%;height:72px;
+  display:flex;align-items:center;justify-content:center;
+  background:rgba(8,8,8,.85);backdrop-filter:blur(8px);
+  z-index:1000;transition:padding .25s ease
+}
+.logo{
+  font-weight:800;font-size:28px;
+  background:linear-gradient(90deg,#ff1e1e,#ffb347);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  text-shadow:0 0 20px rgba(255,60,40,.55)
+}
+
+/* BG PARTICLES */
+#particles-bg{
+  position:fixed;inset:0;z-index:-1;
+  background:radial-gradient(circle at 50% 30%,#1a0000 0%,#000 75%)
+}
+.particle{
+  position:absolute;width:4px;height:4px;border-radius:50%;
+  background:radial-gradient(#ffd700,#ff5a00);
+  opacity:.8;animation:float 16s linear infinite
+}
+@keyframes float{
+  0%{transform:translateY(0) scale(1)}
+  50%{transform:translateY(-800px) scale(1.5)}
+  100%{transform:translateY(0) scale(1)}
+}
+
+/* HERO */
+.hero{
+  min-height:calc(100vh - 72px);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:18px;text-align:center;padding:96px 20px 48px;
+}
+.hero h1{font-size:52px;line-height:1.1;text-shadow:0 0 18px #ff2d2d}
+.hero p{color:#dcdcdc;font-size:18px}
+.btn{
+  display:inline-block;padding:15px 34px;border-radius:12px;font-weight:700;text-decoration:none;
+  background:linear-gradient(90deg,#ff1e1e,#ff8a00);color:#fff;
+  box-shadow:0 0 16px rgba(255,72,0,.55);transition:.25s;animation:pulse 2s infinite
+}
+.btn:hover{transform:translateY(-2px);box-shadow:0 0 26px rgba(255,120,0,.85)}
+@keyframes pulse{
+  0%,100%{box-shadow:0 0 14px rgba(255,72,0,.5)}
+  50%{box-shadow:0 0 30px rgba(255,140,0,.9)}
+}
+
+/* SPLIT */
+.split{
+  max-width:1200px;margin:0 auto;padding:72px 20px 40px;
+  display:grid;grid-template-columns:repeat(2,minmax(280px,1fr));gap:32px;
+}
+@media (max-width:980px){.split{grid-template-columns:1fr}}
+.pane{
+  text-align:center;padding:28px 16px;border-radius:18px;
+  background:linear-gradient(180deg,rgba(255,140,0,.05),rgba(0,0,0,.25));
+  border:1px solid rgba(255,160,0,.15);box-shadow:0 0 24px rgba(255,120,0,.18);
+}
+.pane h2{font-size:32px;margin-bottom:8px;text-shadow:0 0 14px rgba(255,140,0,.9)}
+.pane p.lead{color:#e6e6e6;margin-bottom:22px}
+.chips{display:grid;gap:16px;max-width:420px;margin:0 auto 25px}
+.chip{
+  padding:14px 16px;border-radius:14px;
+  background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1);
+  box-shadow:0 0 14px rgba(255,120,0,.18)
+}
+.chip b{display:block;margin-bottom:4px;color:#fff}
+
+/* TESTIMONIALS */
+.testimonials{max-width:1200px;margin:0 auto;padding:78px 20px 90px;text-align:center}
+.testimonials h2{color:#ff7a00;text-shadow:0 0 12px #ff3b00;margin-bottom:10px}
+.testimonials p.desc{color:#d8d8d8;max-width:880px;margin:0 auto 36px}
+.people{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+@media (max-width:980px){.people{grid-template-columns:1fr}}
+.card{
+  background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1);
+  border-radius:20px;padding:26px;box-shadow:0 0 22px rgba(255,90,0,.2)
+}
+.avatar{width:74px;height:74px;border-radius:50%;border:3px solid #ff7a00;margin:0 auto 8px}
+.name{font-weight:700}
+.meta{color:#ffb347;font-size:13.5px}
+.body{color:#e9e9e9;margin-top:10px;font-size:15.5px}
+
+footer{border-top:1px solid #212121;text-align:center;padding:38px;color:#9d9d9d}
+
+/* MODALS */
+.modal-overlay{
+  position:fixed;inset:0;background:rgba(0,0,0,0.8);backdrop-filter:blur(8px);
+  display:none;justify-content:center;align-items:center;z-index:2000;
+  animation:fadeIn .4s ease forwards;
+}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+.modal{
+  background:rgba(20,20,20,.9);border:1px solid rgba(255,255,255,.1);
+  border-radius:16px;max-width:900px;padding:40px 30px;text-align:center;
+  box-shadow:0 0 25px rgba(255,100,0,.4);animation:scaleIn .4s ease forwards;
+  position:relative;
+}
+@keyframes scaleIn{from{transform:scale(.9);opacity:0}to{transform:scale(1);opacity:1}}
+.modal h2{color:#ff6600;margin-bottom:10px;text-shadow:0 0 15px #ff3300}
+.modal p{color:#ccc;margin-bottom:30px}
+.modal a.btn{
+  background:linear-gradient(90deg,#ff1e1e,#ff8a00);
+  box-shadow:0 0 20px rgba(255,100,0,.6);
+}
+.close{
+  position:absolute;top:15px;right:25px;font-size:28px;color:#fff;cursor:pointer;
+  transition:.3s;
+}
+.close:hover{color:#ff6600;transform:rotate(90deg)}
+.planos{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:20px;max-height:65vh;overflow-y:auto;
+}
+.plano{
+  background:rgba(255,255,255,.06);border-radius:14px;padding:20px;
+  border:1px solid rgba(255,255,255,.1);
+  box-shadow:0 0 15px rgba(255,90,0,.25);transition:.3s;
+}
+.plano:hover{transform:translateY(-6px);box-shadow:0 0 30px rgba(255,120,0,.45)}
+.plano h3{color:#fff;margin-bottom:8px}
+.plano p{color:#ccc;margin-bottom:10px;font-size:14px}
+.price{color:#ffb347;font-weight:600;margin-bottom:10px}
+.plano a{
+  display:inline-block;margin-top:10px;padding:10px 20px;
+  background:linear-gradient(90deg,#ff1e1e,#ff8a00);
+  border-radius:8px;color:#fff;font-weight:700;text-decoration:none;
+  box-shadow:0 0 10px rgba(255,100,0,.6);transition:.3s;
+}
+.plano a:hover{transform:scale(1.05)}
+</style>
+</head>
+<body>
+<div id="particles-bg"></div>
+
+<header><div class="logo">Portal Stream&Criação</div></header>
+
+<section class="hero">
+  <h1>Assista. Crie. Lucre.</h1>
+  <p>O portal definitivo pra quem quer aproveitar o melhor dos dois mundos.</p>
+  <a href="#historias" class="btn">🎬 Assista tudo sem limites</a>
+</section>
+
+<section class="split">
+  <div class="pane">
+    <h2>🎬 LunaTV Plus</h2>
+    <p class="lead">Assista filmes, séries e canais 24h com qualidade máxima e sem limites.</p>
+    <div class="chips">
+      <div class="chip"><b>+10.000 Conteúdos</b>Filmes, séries e esportes ao vivo.</div>
+      <div class="chip"><b>Qualidade 4K</b>Imagens nítidas em qualquer tela.</div>
+      <div class="chip"><b>Sem Mensalidade</b>Pague uma vez e assista pra sempre.</div>
+    </div>
+    <a href="#" id="abrirLuna" class="btn">Acessar Planos LunaTV</a>
+  </div>
+
+  <div class="pane">
+    <h2>💸 Mega Pack Cortes 4.0</h2>
+    <p class="lead">Crie vídeos virais e ganhe dinheiro com conteúdos prontos para TikTok, Reels e Shorts.</p>
+    <div class="chips">
+      <div class="chip"><b>Templates Profissionais</b>Modelos otimizados para engajamento.</div>
+      <div class="chip"><b>Resultados Reais</b>Alunos faturando com vídeos prontos.</div>
+      <div class="chip"><b>Suporte Premium</b>Atualizações e dicas mensais exclusivas.</div>
+    </div>
+    <a href="#" id="abrirPack" class="btn">Adquirir Mega Pack</a>
+  </div>
+</section>
+
+<section id="historias" class="testimonials">
+  <h2>✨ Histórias Reais. Resultados Reais.</h2>
+  <p class="desc">Seja pra maratonar seus filmes e séries favoritas com qualidade máxima, ou pra transformar vídeos prontos em renda online, o Portal Stream&Criação conecta entretenimento e oportunidade num só lugar.</p>
+
+  <div class="people">
+    <article class="card">
+      <img class="avatar" src="https://i.pravatar.cc/150?img=5" alt="">
+      <div class="name">Lucas Mendes</div>
+      <div class="meta">22 anos • Criador de Conteúdo</div>
+      <p class="body">“Comecei só pra assistir filmes, e hoje ganho uma grana extra com os vídeos prontos. Nunca imaginei que seria tão simples.”</p>
+    </article>
+
+    <article class="card">
+      <img class="avatar" src="https://i.pravatar.cc/150?img=32" alt="">
+      <div class="name">Amanda Silva</div>
+      <div class="meta">28 anos • Designer</div>
+      <p class="body">“O LunaTV é impecável, e o Pack de Cortes tem tudo pronto. Só edito, posto e o engajamento vem naturalmente!”</p>
+    </article>
+
+    <article class="card">
+      <img class="avatar" src="https://i.pravatar.cc/150?img=12" alt="">
+      <div class="name">Felipe Rocha</div>
+      <div class="meta">31 anos • Editor de Vídeo</div>
+      <p class="body">“A junção perfeita: assistir sem limites e lucrar com vídeos virais. Tudo num só portal, valeu cada centavo.”</p>
+    </article>
+  </div>
+</section>
+
+<footer>© 2025 Portal Stream&Criação — Todos os direitos reservados.</footer>
+
+<!-- MODAL LUNA (COMPLETO) -->
+<div id="modalLuna" class="modal-overlay">
+  <div class="modal">
+    <span class="close" id="fecharLuna">&times;</span>
+    <h2>📺 Planos LunaTV Plus</h2>
+    <p>Escolha o plano ideal e tenha acesso ilimitado a filmes, séries e canais 24h com qualidade máxima.</p>
+    <div class="planos">
+      <div class="plano"><h3>Plano Anual - 2 Telas</h3><p>Assista por 12 meses em até 2 dispositivos simultaneamente.</p><div class="price">R$79,90</div><a target="_blank" href="https://pay.kirvano.com/4c61347b-f494-4921-b956-253886f15d67?aff=18238232-13a5-41db-b012-7e8b2e7848b2">Adquirir Agora</a></div>
+      <div class="plano"><h3>Vitalício Promocional</h3><p>Acesso vitalício com pagamento único.</p><div class="price">R$250,00</div><a target="_blank" href="https://pay.kirvano.com/29b91baf-cecf-47c9-a4eb-2f270c992af0?aff=18238232-13a5-41db-b012-7e8b2e7848b2">Adquirir Agora</a></div>
+      <div class="plano"><h3>Tela Adicional</h3><p>Adicione uma tela extra ao seu plano atual.</p><div class="price">R$49,90</div><a target="_blank" href="https://pay.kirvano.com/83e2b30e-f09d-4f35-856f-505e2c96db8b?aff=18238232-13a5-41db-b012-7e8b2e7848b2">Adicionar</a></div>
+      <div class="plano"><h3>2 Anos de Acesso</h3><p>Economize com 24 meses de acesso completo.</p><div class="price">R$129,90</div><a target="_blank" href="https://pay.kirvano.com/ffecf6a2-b8da-4421-ae4f-890fe1acbda7?aff=18238232-13a5-41db-b012-7e8b2e7848b2">Adquirir</a></div>
+      <div class="plano"><h3>1 Ano - 2 Telas</h3><p>Um ano completo em até 2 dispositivos simultâneos.</p><div class="price">R$89,90</div><a target="_blank" href="https://pay.kirvano.com/4c835663-ac65-4908-9470-c70bfa3cc84c?aff=18238232-13a5-41db-b012-7e8b2e7848b2">Assinar</a></div>
+      <div class="plano"><h3>Vitalício</h3><p>Assista pra sempre, plano vitalício completo.</p><div class="price">R$297,00</div><a target="_blank" href="https://pay.kirvano.com/fc0f0c2b-11c9-44d0-8ff6-09c13094a9f3?aff=18238232-13a5-41db-b012-7e8b2e7848b2">Adquirir</a></div>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL MEGA PACK -->
+<div id="modalPack" class="modal-overlay">
+  <div class="modal">
+    <span class="close" id="fecharPack">&times;</span>
+    <h2>💸 Adquirir Mega Pack Cortes 4.0</h2>
+    <p>🚀 Transforme suas ideias em vídeos virais e comece a lucrar agora!  
+    Receba modelos prontos, otimizados para TikTok, Reels e Shorts.  
+    O sucesso dos grandes criadores começa com o primeiro clique.</p>
+    <a class="btn" target="_blank" href="https://pay.kirvano.com/r/c100489e-e36a-4e89-9cdd-7f74a7c9e8d7">Adquirir Agora</a>
+  </div>
+</div>
+
+<script>
+const header=document.querySelector('header');
+window.addEventListener('scroll',()=>{header.style.padding=window.scrollY>80?'10px 0':'25px 0'});
+
+const bg=document.getElementById('particles-bg');
+for(let i=0;i<90;i++){const p=document.createElement('div');p.className='particle';
+p.style.left=Math.random()*100+'%';p.style.top=Math.random()*100+'%';
+p.style.animationDuration=10+Math.random()*18+'s';
+p.style.animationDelay=Math.random()*12+'s';bg.appendChild(p);}
+
+// Luna modal
+const abrirLuna=document.getElementById('abrirLuna');
+const modalLuna=document.getElementById('modalLuna');
+const fecharLuna=document.getElementById('fecharLuna');
+abrirLuna.addEventListener('click',e=>{e.preventDefault();modalLuna.style.display='flex';});
+fecharLuna.addEventListener('click',()=>modalLuna.style.display='none');
+window.addEventListener('click',e=>{if(e.target===modalLuna)modalLuna.style.display='none';});
+
+// Mega Pack modal
+const abrirPack=document.getElementById('abrirPack');
+const modalPack=document.getElementById('modalPack');
+const fecharPack=document.getElementById('fecharPack');
+abrirPack.addEventListener('click',e=>{e.preventDefault();modalPack.style.display='flex';});
+fecharPack.addEventListener('click',()=>modalPack.style.display='none');
+window.addEventListener('click',e=>{if(e.target===modalPack)modalPack.style.display='none';});
+</script>
+</body>
+</html>
