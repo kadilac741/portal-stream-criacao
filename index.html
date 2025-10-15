@@ -60,6 +60,29 @@ header{
   50%{box-shadow:0 0 30px rgba(255,140,0,.9)}
 }
 
+/* BOTÃO SECUNDÁRIO (SAIBA MAIS) */
+.btn-secundario {
+  display:inline-block;
+  margin-top:12px;
+  padding:13px 32px;
+  border-radius:12px;
+  font-weight:700;
+  text-decoration:none;
+  background:linear-gradient(90deg,#ff8a00,#ff1e1e);
+  color:#fff;
+  box-shadow:0 0 16px rgba(255,80,0,.45);
+  transition:.25s;
+  animation:pulseSec 2s infinite;
+}
+.btn-secundario:hover {
+  transform:translateY(-2px);
+  box-shadow:0 0 28px rgba(255,100,0,.8);
+}
+@keyframes pulseSec {
+  0%,100% { box-shadow:0 0 14px rgba(255,100,0,.45); }
+  50% { box-shadow:0 0 30px rgba(255,160,0,.85); }
+}
+
 /* SPLIT */
 .split{
   max-width:1200px;margin:0 auto;padding:72px 20px 40px;
@@ -166,6 +189,7 @@ footer{border-top:1px solid #212121;text-align:center;padding:38px;color:#9d9d9d
       <div class="chip"><b>Sem Mensalidade</b>Pague uma vez e assista pra sempre.</div>
     </div>
     <a href="#" id="abrirLuna" class="btn">Acessar Planos LunaTV</a>
+    <a href="saiba-mais.html" target="_blank" class="btn-secundario">Saiba mais</a>
   </div>
 
   <div class="pane">
@@ -210,7 +234,7 @@ footer{border-top:1px solid #212121;text-align:center;padding:38px;color:#9d9d9d
 
 <footer>© 2025 Portal Stream&Criação — Todos os direitos reservados.</footer>
 
-<!-- MODAL LUNA (COMPLETO) -->
+<!-- MODAL LUNA -->
 <div id="modalLuna" class="modal-overlay">
   <div class="modal">
     <span class="close" id="fecharLuna">&times;</span>
@@ -244,10 +268,15 @@ const header=document.querySelector('header');
 window.addEventListener('scroll',()=>{header.style.padding=window.scrollY>80?'10px 0':'25px 0'});
 
 const bg=document.getElementById('particles-bg');
-for(let i=0;i<90;i++){const p=document.createElement('div');p.className='particle';
-p.style.left=Math.random()*100+'%';p.style.top=Math.random()*100+'%';
-p.style.animationDuration=10+Math.random()*18+'s';
-p.style.animationDelay=Math.random()*12+'s';bg.appendChild(p);}
+for(let i=0;i<90;i++){
+  const p=document.createElement('div');
+  p.className='particle';
+  p.style.left=Math.random()*100+'%';
+  p.style.top=Math.random()*100+'%';
+  p.style.animationDuration=10+Math.random()*18+'s';
+  p.style.animationDelay=Math.random()*12+'s';
+  bg.appendChild(p);
+}
 
 // Luna modal
 const abrirLuna=document.getElementById('abrirLuna');
@@ -267,3 +296,4 @@ window.addEventListener('click',e=>{if(e.target===modalPack)modalPack.style.disp
 </script>
 </body>
 </html>
+
