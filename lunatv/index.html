@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LunaTV Plus — Tudo sobre</title>
+<link rel="icon" type="image/png" href="img/icon.png">
+<style>
+/* === ESTILO GLOBAL === */
+* {margin:0;padding:0;box-sizing:border-box}
+body {
+  font-family:'Poppins',sans-serif;
+  background:#000;
+  color:#fff;
+  overflow-x:hidden;
+}
+
+/* === CABEÇALHO === */
+header {
+  width:100%;
+  text-align:center;
+  padding:25px 0;
+  border-bottom:1px solid rgba(255,255,255,0.1);
+}
+header img {
+  height:60px;
+}
+
+/* === HERO COM VÍDEO === */
+.hero {
+  position:relative;
+  width:100%;
+  max-width:100%;
+  overflow:hidden;
+  height:80vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+.hero video {
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  border-bottom:2px solid rgba(255,255,255,0.05);
+}
+.hero-content {
+  position:absolute;
+  text-align:center;
+  color:#fff;
+  text-shadow:0 0 10px rgba(0,0,0,0.7);
+}
+.hero-content h1 {
+  font-size:48px;
+  font-weight:800;
+  margin-bottom:16px;
+}
+.hero-content p {
+  font-size:18px;
+  color:#ddd;
+}
+
+/* === SEÇÕES === */
+section {
+  padding:70px 20px;
+  text-align:center;
+}
+section h2 {
+  font-size:36px;
+  color:#fff;
+  margin-bottom:20px;
+  text-shadow:0 0 10px rgba(255,255,255,0.2);
+}
+section p {
+  max-width:900px;
+  margin:auto;
+  font-size:17px;
+  color:#d8d8d8;
+  line-height:1.6;
+}
+
+/* === FEATURES === */
+.features {
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:30px;
+  margin-top:50px;
+}
+.feature {
+  background:rgba(255,255,255,0.05);
+  border:1px solid rgba(255,255,255,0.08);
+  border-radius:16px;
+  padding:30px;
+  transition:.3s;
+}
+.feature:hover {
+  transform:translateY(-5px);
+  box-shadow:0 0 20px rgba(255,255,255,0.15);
+}
+.feature img {
+  width:70px;
+  margin-bottom:15px;
+}
+.feature h3 {
+  color:#fff;
+  margin-bottom:10px;
+  font-size:22px;
+}
+.feature p {
+  color:#ccc;
+  font-size:15px;
+}
+
+/* === CARROSSEL CENTRAL === */
+.carousel {
+  margin-top:50px;
+  overflow:hidden;
+  width:80%;
+  margin-left:auto;
+  margin-right:auto;
+  position:relative;
+}
+.slider {
+  display:flex;
+  animation:scroll 40s linear infinite;
+}
+.slider img {
+  width:220px;
+  height:320px;
+  border-radius:12px;
+  margin:0 10px;
+  object-fit:cover;
+  box-shadow:0 0 12px rgba(255,255,255,0.1);
+  transition:.3s;
+}
+.slider img:hover {
+  transform:scale(1.05);
+  box-shadow:0 0 25px rgba(255,255,255,0.25);
+}
+@keyframes scroll {
+  0%{transform:translateX(0);}
+  100%{transform:translateX(-50%);}
+}
+
+/* === LEGENDAS DOS FILMES === */
+.filme {
+  position:relative;
+}
+.filme span {
+  position:absolute;
+  bottom:10px;
+  left:0;
+  right:0;
+  text-align:center;
+  background:rgba(0,0,0,0.5);
+  font-size:15px;
+  padding:4px;
+  border-radius:0 0 12px 12px;
+}
+
+/* === RODAPÉ === */
+footer {
+  background:#080808;
+  color:#aaa;
+  text-align:center;
+  padding:40px 20px;
+  border-top:1px solid rgba(255,255,255,0.08);
+  font-size:14px;
+}
+</style>
+</head>
+<body>
+
+<header>
+  <img src="img/logo.png" alt="LunaTV Logo">
+</header>
+
+<section class="hero">
+  <video src="video/luna-video.mp4" autoplay loop controls></video>
+  <div class="hero-content">
+    <h1>TUDO SOBRE A LUNATV PLUS</h1>
+    <p>Conheça o melhor serviço de entretenimento com filmes, séries e canais 24h em alta qualidade.</p>
+  </div>
+</section>
+
+<section>
+  <h2>O que é a LunaTV Plus?</h2>
+  <p>A LunaTV é uma plataforma completa de entretenimento que reúne filmes, séries, desenhos e canais 24 horas em um só lugar. Tudo com qualidade HD e estabilidade de primeira. Ideal pra quem quer assistir sem interrupções e com uma experiência fluida em qualquer dispositivo.</p>
+</section>
+
+<section>
+  <h2>A LunaTV é pra você que...</h2>
+  <div class="features">
+    <div class="feature">
+      <img src="img/netflix.png" alt="Filmes e séries">
+      <h3>É amante de filmes e séries</h3>
+      <p>Assista sem limites e sem travamentos. Experiência completa de cinema na sua casa.</p>
+    </div>
+    <div class="feature">
+      <img src="img/familia.png" alt="Família">
+      <h3>Quer reunir toda a família</h3>
+      <p>Desenhos, filmes e canais 24h — diversão garantida pra todas as idades.</p>
+    </div>
+    <div class="feature">
+      <img src="img/qualidade.png" alt="Qualidade">
+      <h3>Valoriza qualidade e estabilidade</h3>
+      <p>Transmissão em HD e 4K, estabilidade e fluidez impecáveis em qualquer dispositivo.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>Filmes, séries e muito mais</h2>
+  <p>Veja alguns dos títulos disponíveis na plataforma LunaTV Plus.</p>
+
+  <div class="carousel">
+    <div class="slider">
+      <div class="filme"><img src="img/avatar.png" alt=""><span>Avatar 2</span></div>
+      <div class="filme"><img src="img/johnwick4.png" alt=""><span>John Wick 4</span></div>
+      <div class="filme"><img src="img/strangerthings.png" alt=""><span>Stranger Things</span></div>
+      <div class="filme"><img src="img/spiderman.png" alt=""><span>Homem-Aranha</span></div>
+      <div class="filme"><img src="img/fastx.png" alt=""><span>Velozes e Furiosos 10</span></div>
+      <div class="filme"><img src="img/guardioes.png" alt=""><span>Guardiões da Galáxia</span></div>
+      <div class="filme"><img src="img/oppenheimer.png" alt=""><span>Oppenheimer</span></div>
+      <div class="filme"><img src="img/matrix.png" alt=""><span>Matrix Reloaded</span></div>
+      <div class="filme"><img src="img/interstellar.png" alt=""><span>Interestelar</span></div>
+
+      <!-- duplicação pra loop infinito -->
+      <div class="filme"><img src="img/avatar.png" alt=""><span>Avatar 2</span></div>
+      <div class="filme"><img src="img/johnwick4.png" alt=""><span>John Wick 4</span></div>
+      <div class="filme"><img src="img/strangerthings.png" alt=""><span>Stranger Things</span></div>
+      <div class="filme"><img src="img/spiderman.png" alt=""><span>Homem-Aranha</span></div>
+      <div class="filme"><img src="img/fastx.png" alt=""><span>Velozes e Furiosos 10</span></div>
+      <div class="filme"><img src="img/guardioes.png" alt=""><span>Guardiões da Galáxia</span></div>
+      <div class="filme"><img src="img/oppenheimer.png" alt=""><span>Oppenheimer</span></div>
+      <div class="filme"><img src="img/matrix.png" alt=""><span>Matrix Reloaded</span></div>
+      <div class="filme"><img src="img/interstellar.png" alt=""><span>Interestelar</span></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  © 2025 LunaTV Plus — Todos os direitos reservados.<br>
+  Este site é apenas informativo e não realiza vendas.
+</footer>
+
+</body>
+</html>
