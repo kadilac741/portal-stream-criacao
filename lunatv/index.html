@@ -21,15 +21,12 @@ header {
 }
 header img {height:60px}
 
-/* HERO (com vídeo Vimeo limpo) */
+/* HERO (vídeo Vimeo com som e controles) */
 .hero {
   position:relative;
   width:100%;
   height:80vh;
   overflow:hidden;
-  display:flex;
-  justify-content:center;
-  align-items:center;
 }
 .hero iframe {
   position:absolute;
@@ -39,26 +36,40 @@ header img {height:60px}
   height:100%;
   border:0;
   z-index:0;
-  pointer-events:none;
 }
 .hero-content {
-  position:relative;
+  position:absolute;
   z-index:1;
-  text-align:center;
+  width:100%;
+  height:100%;
+  pointer-events:none;
+}
+.hero-title {
+  position:absolute;
+  bottom:40px;
+  left:50px;
+  text-align:left;
+}
+.hero-title h1 {
+  font-size:48px;
+  font-weight:800;
   color:#fff;
   text-shadow:0 0 10px rgba(0,0,0,0.7);
 }
-.hero-content h1 {
-  font-size:48px;
-  font-weight:800;
-  margin-bottom:16px;
+.hero-sub {
+  position:absolute;
+  top:40px;
+  right:50px;
+  text-align:right;
 }
-.hero-content p {
+.hero-sub p {
   font-size:18px;
   color:#ddd;
+  text-shadow:0 0 10px rgba(0,0,0,0.7);
+  max-width:380px;
 }
 
-/* CONTEÚDO GERAL */
+/* CONTEÚDO */
 section {
   padding:70px 20px;
   text-align:center;
@@ -67,7 +78,6 @@ section h2 {
   font-size:36px;
   color:#fff;
   margin-bottom:20px;
-  text-shadow:0 0 10px rgba(255,255,255,0.2);
 }
 section p {
   max-width:900px;
@@ -163,16 +173,21 @@ footer {
 </header>
 
 <section class="hero">
+  <!-- Player Vimeo com som e controles -->
   <iframe
-    src="https://player.vimeo.com/video/1127733020?background=1&autoplay=1&loop=1&muted=0"
+    src="https://player.vimeo.com/video/1127733020?autoplay=1&loop=1&muted=0&controls=1"
     frameborder="0"
     allow="autoplay; fullscreen"
     allowfullscreen
   ></iframe>
 
   <div class="hero-content">
-    <h1>TUDO SOBRE A LUNATV PLUS</h1>
-    <p>Conheça o melhor serviço de entretenimento com filmes, séries e canais 24h em alta qualidade.</p>
+    <div class="hero-title">
+      <h1>TUDO SOBRE A LUNATV PLUS</h1>
+    </div>
+    <div class="hero-sub">
+      <p>Conheça o melhor serviço de entretenimento com filmes, séries e canais 24h em alta qualidade.</p>
+    </div>
   </div>
 </section>
 
