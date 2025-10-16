@@ -26,7 +26,7 @@ header img {
   height:60px;
 }
 
-/* === HERO COM VÍDEO === */
+/* === HERO COM VÍDEO DO YOUTUBE === */
 .hero {
   position:relative;
   width:100%;
@@ -37,11 +37,13 @@ header img {
   justify-content:center;
   align-items:center;
 }
-.hero video {
+.hero iframe {
   width:100%;
   height:100%;
-  object-fit:cover;
-  border-bottom:2px solid rgba(255,255,255,0.05);
+  border:0;
+  position:absolute;
+  top:0;
+  left:0;
 }
 .hero-content {
   position:absolute;
@@ -175,7 +177,13 @@ footer {
 </header>
 
 <section class="hero">
-  <video src="lunatv/video/luna-video.mp4" autoplay loop controls></video>
+  <iframe
+    src="https://www.youtube.com/embed/eoksRmEtrhY?autoplay=1&mute=0&loop=1&playlist=eoksRmEtrhY&controls=1"
+    title="LunaTV Plus"
+    frameborder="0"
+    allow="autoplay; encrypted-media; picture-in-picture"
+    allowfullscreen>
+  </iframe>
   <div class="hero-content">
     <h1>TUDO SOBRE A LUNATV PLUS</h1>
     <p>Conheça o melhor serviço de entretenimento com filmes, séries e canais 24h em alta qualidade.</p>
@@ -245,5 +253,3 @@ footer {
 
 </body>
 </html>
-
-
