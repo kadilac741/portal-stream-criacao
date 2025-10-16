@@ -241,60 +241,73 @@ footer{border-top:1px solid #212121;text-align:center;padding:38px;color:#9d9d9d
     <h2>📺 Planos LunaTV Plus</h2>
     <p>Escolha o plano ideal e tenha acesso ilimitado a filmes, séries e canais 24h com qualidade máxima.</p>
     <div class="planos">
+
       <div class="plano"><h3>Plano Anual - 2 Telas</h3><p>Assista por 12 meses em até 2 dispositivos simultaneamente.</p><div class="price">R$79,90</div><a target="_blank" href="https://pay.kirvano.com/4c61347b-f494-4921-b956-253886f15d67?aff=18238232-13a5-41db-b012-7e8b2e7848b2">Adquirir Agora</a></div>
       <div class="plano"><h3>Vitalício Promocional</h3><p>Acesso vitalício com pagamento único.</p><div class="price">R$250,00</div><a target="_blank" href="https://pay.kirvano.com/29b91baf-cecf-47c9-a4eb-2f270c992af0?aff=18238232-13a5-41db-b012-7e8b2e7848b2">Adquirir Agora</a></div>
       <div class="plano"><h3>Tela Adicional</h3><p>Adicione uma tela extra ao seu plano atual.</p><div class="price">R$49,90</div><a target="_blank" href="https://pay.kirvano.com/83e2b30e-f09d-4f35-856f-505e2c96db8b?aff=18238232-13a5-41db-b012-7e8b2e7848b2">Adicionar</a></div>
       <div class="plano"><h3>2 Anos de Acesso</h3><p>Economize com 24 meses de acesso completo.</p><div class="price">R$129,90</div><a target="_blank" href="https://pay.kirvano.com/ffecf6a2-b8da-4421-ae4f-890fe1acbda7?aff=18238232-13a5-41db-b012-7e8b2e7848b2">Adquirir</a></div>
       <div class="plano"><h3>1 Ano - 2 Telas</h3><p>Um ano completo em até 2 dispositivos simultâneos.</p><div class="price">R$89,90</div><a target="_blank" href="https://pay.kirvano.com/4c835663-ac65-4908-9470-c70bfa3cc84c?aff=18238232-13a5-41db-b012-7e8b2e7848b2">Assinar</a></div>
       <div class="plano"><h3>Vitalício</h3><p>Assista pra sempre, plano vitalício completo.</p><div class="price">R$297,00</div><a target="_blank" href="https://pay.kirvano.com/fc0f0c2b-11c9-44d0-8ff6-09c13094a9f3?aff=18238232-13a5-41db-b012-7e8b2e7848b2">Adquirir</a></div>
+
+      <!-- NOVO PLANO MENSAL -->
+      <div class="plano">
+        <h3>Mensal - 1 Tela</h3>
+        <p>Assista em 1 dispositivo simultaneamente.</p>
+        <div class="price">R$24,90 <span style="color:#bbb;font-size:13px;">mensal</span></div>
+        <a target="_blank" href="https://pay.kirvano.com/3aac96c1-7db8-4bed-900a-a51664129a81?aff=18238232-13a5-41db-b012-7e8b2e7848b2
+">Assinar Agora</a>
+      </div>
     </div>
   </div>
 </div>
 
-<!-- MODAL MEGA PACK -->
+<!-- MODAL PACK -->
 <div id="modalPack" class="modal-overlay">
   <div class="modal">
     <span class="close" id="fecharPack">&times;</span>
     <h2>💸 Adquirir Mega Pack Cortes 4.0</h2>
-    <p>🚀 Transforme suas ideias em vídeos virais e comece a lucrar agora!  
-    Receba modelos prontos, otimizados para TikTok, Reels e Shorts.  
-    O sucesso dos grandes criadores começa com o primeiro clique.</p>
-    <a class="btn" target="_blank" href="https://pay.kirvano.com/r/c100489e-e36a-4e89-9cdd-7f74a7c9e8d7">Adquirir Agora</a>
+    <p>🚀 Transforme suas ideias em vídeos virais e comece a lucrar agora!
+      Receba modelos prontos, otimizados para TikTok, Reels e Shorts.
+      O sucesso dos grandes criadores começa com o primeiro clique.
+    </p>
+    <a class="btn" target="_blank"
+       href="https://pay.kirvano.com/r/c100489e-e36a-4e89-9cdd-7f74a7c9e8d7">
+      Adquirir Agora
+    </a>
   </div>
 </div>
 
 <script>
-const header=document.querySelector('header');
-window.addEventListener('scroll',()=>{header.style.padding=window.scrollY>80?'10px 0':'25px 0'});
-
-const bg=document.getElementById('particles-bg');
-for(let i=0;i<90;i++){
+/* === PARTÍCULAS === */
+const bg = document.getElementById('particles-bg');
+for(let i=0;i<40;i++){
   const p=document.createElement('div');
-  p.className='particle';
-  p.style.left=Math.random()*100+'%';
-  p.style.top=Math.random()*100+'%';
-  p.style.animationDuration=10+Math.random()*18+'s';
-  p.style.animationDelay=Math.random()*12+'s';
+  p.classList.add('particle');
+  p.style.left=Math.random()*100+'vw';
+  p.style.top=Math.random()*100+'vh';
+  p.style.animationDelay=Math.random()*-16+'s';
+  p.style.animationDuration=10+Math.random()*20+'s';
   bg.appendChild(p);
 }
 
-// Luna modal
+/* === MODAIS === */
 const abrirLuna=document.getElementById('abrirLuna');
 const modalLuna=document.getElementById('modalLuna');
 const fecharLuna=document.getElementById('fecharLuna');
-abrirLuna.addEventListener('click',e=>{e.preventDefault();modalLuna.style.display='flex';});
-fecharLuna.addEventListener('click',()=>modalLuna.style.display='none');
-window.addEventListener('click',e=>{if(e.target===modalLuna)modalLuna.style.display='none';});
+abrirLuna.onclick=()=>modalLuna.style.display='flex';
+fecharLuna.onclick=()=>modalLuna.style.display='none';
 
-// Mega Pack modal
 const abrirPack=document.getElementById('abrirPack');
 const modalPack=document.getElementById('modalPack');
 const fecharPack=document.getElementById('fecharPack');
-abrirPack.addEventListener('click',e=>{e.preventDefault();modalPack.style.display='flex';});
-fecharPack.addEventListener('click',()=>modalPack.style.display='none');
-window.addEventListener('click',e=>{if(e.target===modalPack)modalPack.style.display='none';});
+abrirPack.onclick=()=>modalPack.style.display='flex';
+fecharPack.onclick=()=>modalPack.style.display='none';
+
+window.onclick=e=>{
+  if(e.target===modalLuna) modalLuna.style.display='none';
+  if(e.target===modalPack) modalPack.style.display='none';
+};
 </script>
+
 </body>
 </html>
-
-
