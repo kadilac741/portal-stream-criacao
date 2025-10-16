@@ -59,7 +59,7 @@ header img{height:60px}
   text-shadow:0 0 15px rgba(0,0,0,0.7);
 }
 
-/* BOTÃO PAUSAR/DESPAUSAR (CLICÁVEL) */
+/* BOTÃO PAUSAR/DESPAUSAR */
 #pause-btn{
   position:absolute;
   bottom:25px;
@@ -75,11 +75,35 @@ header img{height:60px}
   cursor:pointer;
   backdrop-filter:blur(6px);
   transition:0.3s;
-  pointer-events:auto; /* importante */
+  pointer-events:auto;
 }
 #pause-btn:hover{
   background:rgba(255,255,255,0.25);
   transform:scale(1.1);
+}
+
+/* SETA DE INDICAÇÃO */
+.arrow-hint {
+  position: absolute;
+  bottom: 100px;
+  right: 45px;
+  z-index: 15;
+  font-size: 50px;
+  color: #fff;
+  opacity: 0.9;
+  animation: bounce 1.2s infinite, glow 2s ease-in-out infinite alternate;
+  filter: drop-shadow(0 0 15px rgba(255,255,255,0.6));
+  cursor: pointer;
+  transition: opacity 0.3s;
+}
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+}
+@keyframes glow {
+  0% { text-shadow: 0 0 8px #0ff, 0 0 15px #0ff, 0 0 25px #0ff; color: #0ff; }
+  50% { text-shadow: 0 0 8px #f0f, 0 0 15px #f0f, 0 0 25px #f0f; color: #f0f; }
+  100% { text-shadow: 0 0 8px #0ff, 0 0 15px #0ff, 0 0 25px #0ff; color: #0ff; }
 }
 
 /* SEÇÕES */
@@ -198,6 +222,7 @@ footer{
   </div>
 
   <button id="pause-btn" aria-label="Pausar vídeo">⏸</button>
+  <div class="arrow-hint" id="arrow-hint">⬇️</div>
 </section>
 
 <section>
@@ -265,23 +290,18 @@ footer{
 const iframe = document.getElementById('vimeoPlayer');
 const player = new Vimeo.Player(iframe);
 const btn = document.getElementById('pause-btn');
+const arrow = document.getElementById('arrow-hint');
 
-/* ============ Som ligado (com fallback de interação) ============ */
+/* Som ligado (com fallback) */
 function forceSoundAndPlay(){
   player.setMuted(false).catch(()=>{});
   player.setVolume(1).catch(()=>{});
   player.play().catch(()=>{});
 }
+player.ready().then(forceSoundAndPlay);
 
-player.ready().then(() => {
-  // tenta ligar o som e tocar assim que carregar
-  forceSoundAndPlay();
-});
-
-// primeira interação do usuário: garante som ligado em qualquer navegador
 const unlock = () => {
   forceSoundAndPlay();
-  // remove os listeners depois da primeira tentativa
   document.removeEventListener('click', unlock);
   document.removeEventListener('touchstart', unlock);
   document.removeEventListener('keydown', unlock);
@@ -290,23 +310,24 @@ document.addEventListener('click', unlock, {once:true});
 document.addEventListener('touchstart', unlock, {once:true});
 document.addEventListener('keydown', unlock, {once:true});
 
-/* ============ Botão Pausar/Despausar ============ */
+/* Botão Play/Pause */
 btn.addEventListener('click', async () => {
   try {
     const isPaused = await player.getPaused();
     if (isPaused) {
       await player.play();
       btn.textContent = '⏸';
-      btn.setAttribute('aria-label','Pausar vídeo');
     } else {
       await player.pause();
       btn.textContent = '▶️';
-      btn.setAttribute('aria-label','Reproduzir vídeo');
     }
   } catch(e){
-    // se algo falhar (ex: player ainda não pronto), tenta forçar play
     forceSoundAndPlay();
   }
+
+  // seta desaparece no clique
+  arrow.style.opacity = '0';
+  setTimeout(() => arrow.remove(), 400);
 });
 </script>
 
