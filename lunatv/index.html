@@ -6,7 +6,6 @@
 <title>LunaTV Plus — Tudo sobre</title>
 <link rel="icon" type="image/png" href="img/icon.png">
 <style>
-/* === ESTILO GLOBAL === */
 * {margin:0;padding:0;box-sizing:border-box}
 body {
   font-family:'Poppins',sans-serif;
@@ -14,39 +13,37 @@ body {
   color:#fff;
   overflow-x:hidden;
 }
-
-/* === CABEÇALHO === */
 header {
   width:100%;
   text-align:center;
   padding:25px 0;
   border-bottom:1px solid rgba(255,255,255,0.1);
 }
-header img {
-  height:60px;
-}
+header img {height:60px}
 
-/* === HERO COM VÍDEO DO YOUTUBE === */
+/* HERO (com vídeo Vimeo limpo) */
 .hero {
   position:relative;
   width:100%;
-  max-width:100%;
-  overflow:hidden;
   height:80vh;
+  overflow:hidden;
   display:flex;
   justify-content:center;
   align-items:center;
 }
 .hero iframe {
-  width:100%;
-  height:100%;
-  border:0;
   position:absolute;
   top:0;
   left:0;
+  width:100%;
+  height:100%;
+  border:0;
+  z-index:0;
+  pointer-events:none;
 }
 .hero-content {
-  position:absolute;
+  position:relative;
+  z-index:1;
   text-align:center;
   color:#fff;
   text-shadow:0 0 10px rgba(0,0,0,0.7);
@@ -61,7 +58,7 @@ header img {
   color:#ddd;
 }
 
-/* === SEÇÕES === */
+/* CONTEÚDO GERAL */
 section {
   padding:70px 20px;
   text-align:center;
@@ -80,7 +77,7 @@ section p {
   line-height:1.6;
 }
 
-/* === FEATURES === */
+/* FEATURES */
 .features {
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
@@ -102,17 +99,10 @@ section p {
   width:70px;
   margin-bottom:15px;
 }
-.feature h3 {
-  color:#fff;
-  margin-bottom:10px;
-  font-size:22px;
-}
-.feature p {
-  color:#ccc;
-  font-size:15px;
-}
+.feature h3 {color:#fff;margin-bottom:10px;font-size:22px}
+.feature p {color:#ccc;font-size:15px}
 
-/* === CARROSSEL CENTRAL === */
+/* CARROSSEL */
 .carousel {
   margin-top:50px;
   overflow:hidden;
@@ -139,14 +129,10 @@ section p {
   box-shadow:0 0 25px rgba(255,255,255,0.25);
 }
 @keyframes scroll {
-  0%{transform:translateX(0);}
-  100%{transform:translateX(-50%);}
+  0%{transform:translateX(0)}
+  100%{transform:translateX(-50%)}
 }
-
-/* === LEGENDAS DOS FILMES === */
-.filme {
-  position:relative;
-}
+.filme {position:relative}
 .filme span {
   position:absolute;
   bottom:10px;
@@ -159,7 +145,7 @@ section p {
   border-radius:0 0 12px 12px;
 }
 
-/* === RODAPÉ === */
+/* RODAPÉ */
 footer {
   background:#080808;
   color:#aaa;
@@ -178,12 +164,12 @@ footer {
 
 <section class="hero">
   <iframe
-    src="https://www.youtube.com/embed/eoksRmEtrhY?autoplay=1&mute=0&loop=1&playlist=eoksRmEtrhY&controls=1"
-    title="LunaTV Plus"
+    src="https://player.vimeo.com/video/1127733020?background=1&autoplay=1&loop=1&muted=0"
     frameborder="0"
-    allow="autoplay; encrypted-media; picture-in-picture"
-    allowfullscreen>
-  </iframe>
+    allow="autoplay; fullscreen"
+    allowfullscreen
+  ></iframe>
+
   <div class="hero-content">
     <h1>TUDO SOBRE A LUNATV PLUS</h1>
     <p>Conheça o melhor serviço de entretenimento com filmes, séries e canais 24h em alta qualidade.</p>
@@ -232,7 +218,6 @@ footer {
       <div class="filme"><img src="lunatv/img/matrix.png" alt=""><span>Matrix Reloaded</span></div>
       <div class="filme"><img src="lunatv/img/interstellar.png" alt=""><span>Interestelar</span></div>
 
-      <!-- duplicação pra loop infinito -->
       <div class="filme"><img src="lunatv/img/avatar.png" alt=""><span>Avatar 2</span></div>
       <div class="filme"><img src="lunatv/img/johnwick4.png" alt=""><span>John Wick 4</span></div>
       <div class="filme"><img src="lunatv/img/strangerthings.png" alt=""><span>Stranger Things</span></div>
