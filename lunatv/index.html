@@ -6,29 +6,31 @@
 <title>LunaTV Plus — Tudo sobre</title>
 <link rel="icon" type="image/png" href="img/icon.png">
 <style>
-* {margin:0;padding:0;box-sizing:border-box}
-body {
+*{margin:0;padding:0;box-sizing:border-box}
+body{
   font-family:'Poppins',sans-serif;
   background:#000;
   color:#fff;
   overflow-x:hidden;
 }
-header {
+
+/* HEADER */
+header{
   width:100%;
   text-align:center;
   padding:25px 0;
   border-bottom:1px solid rgba(255,255,255,0.1);
 }
-header img {height:60px}
+header img{height:60px}
 
-/* HERO (vídeo Vimeo com som e controles) */
-.hero {
+/* HERO COM VÍDEO */
+.hero{
   position:relative;
   width:100%;
   height:80vh;
   overflow:hidden;
 }
-.hero iframe {
+.hero iframe{
   position:absolute;
   top:0;
   left:0;
@@ -37,49 +39,57 @@ header img {height:60px}
   border:0;
   z-index:0;
 }
-.hero-content {
+.hero-content{
   position:absolute;
-  z-index:1;
+  z-index:2;
   width:100%;
   height:100%;
   pointer-events:none;
 }
-.hero-title {
+.hero-title{
   position:absolute;
-  bottom:40px;
-  left:50px;
+  bottom:60px;
+  left:60px;
   text-align:left;
 }
-.hero-title h1 {
+.hero-title h1{
   font-size:48px;
   font-weight:800;
   color:#fff;
-  text-shadow:0 0 10px rgba(0,0,0,0.7);
-}
-.hero-sub {
-  position:absolute;
-  top:40px;
-  right:50px;
-  text-align:right;
-}
-.hero-sub p {
-  font-size:18px;
-  color:#ddd;
-  text-shadow:0 0 10px rgba(0,0,0,0.7);
-  max-width:380px;
+  text-shadow:0 0 15px rgba(0,0,0,0.7);
 }
 
-/* CONTEÚDO */
-section {
-  padding:70px 20px;
-  text-align:center;
+/* BOTÃO PAUSAR/DESPAUSAR (CLICÁVEL) */
+#pause-btn{
+  position:absolute;
+  bottom:25px;
+  right:25px;
+  z-index:10;
+  background:rgba(255,255,255,0.15);
+  border:none;
+  border-radius:50%;
+  width:60px;
+  height:60px;
+  color:#fff;
+  font-size:28px;
+  cursor:pointer;
+  backdrop-filter:blur(6px);
+  transition:0.3s;
+  pointer-events:auto; /* importante */
 }
-section h2 {
+#pause-btn:hover{
+  background:rgba(255,255,255,0.25);
+  transform:scale(1.1);
+}
+
+/* SEÇÕES */
+section{padding:70px 20px;text-align:center}
+section h2{
   font-size:36px;
   color:#fff;
   margin-bottom:20px;
 }
-section p {
+section p{
   max-width:900px;
   margin:auto;
   font-size:17px;
@@ -88,32 +98,32 @@ section p {
 }
 
 /* FEATURES */
-.features {
+.features{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
   gap:30px;
   margin-top:50px;
 }
-.feature {
+.feature{
   background:rgba(255,255,255,0.05);
   border:1px solid rgba(255,255,255,0.08);
   border-radius:16px;
   padding:30px;
   transition:.3s;
 }
-.feature:hover {
+.feature:hover{
   transform:translateY(-5px);
   box-shadow:0 0 20px rgba(255,255,255,0.15);
 }
-.feature img {
+.feature img{
   width:70px;
   margin-bottom:15px;
 }
-.feature h3 {color:#fff;margin-bottom:10px;font-size:22px}
-.feature p {color:#ccc;font-size:15px}
+.feature h3{color:#fff;margin-bottom:10px;font-size:22px}
+.feature p{color:#ccc;font-size:15px}
 
 /* CARROSSEL */
-.carousel {
+.carousel{
   margin-top:50px;
   overflow:hidden;
   width:80%;
@@ -121,11 +131,11 @@ section p {
   margin-right:auto;
   position:relative;
 }
-.slider {
+.slider{
   display:flex;
   animation:scroll 40s linear infinite;
 }
-.slider img {
+.slider img{
   width:220px;
   height:320px;
   border-radius:12px;
@@ -134,16 +144,16 @@ section p {
   box-shadow:0 0 12px rgba(255,255,255,0.1);
   transition:.3s;
 }
-.slider img:hover {
+.slider img:hover{
   transform:scale(1.05);
   box-shadow:0 0 25px rgba(255,255,255,0.25);
 }
-@keyframes scroll {
+@keyframes scroll{
   0%{transform:translateX(0)}
   100%{transform:translateX(-50%)}
 }
-.filme {position:relative}
-.filme span {
+.filme{position:relative}
+.filme span{
   position:absolute;
   bottom:10px;
   left:0;
@@ -156,7 +166,7 @@ section p {
 }
 
 /* RODAPÉ */
-footer {
+footer{
   background:#080808;
   color:#aaa;
   text-align:center;
@@ -173,22 +183,21 @@ footer {
 </header>
 
 <section class="hero">
-  <!-- Player Vimeo com som e controles -->
-  <iframe
-    src="https://player.vimeo.com/video/1127733020?autoplay=1&loop=1&muted=0&controls=1"
+  <!-- PLAYER VIMEO -->
+  <iframe id="vimeoPlayer"
+    src="https://player.vimeo.com/video/1127733020?autoplay=1&loop=1&muted=0&autopause=0&playsinline=1&controls=0&portrait=0&title=0&byline=0"
     frameborder="0"
     allow="autoplay; fullscreen"
-    allowfullscreen
-  ></iframe>
+    allowfullscreen>
+  </iframe>
 
   <div class="hero-content">
     <div class="hero-title">
       <h1>TUDO SOBRE A LUNATV PLUS</h1>
     </div>
-    <div class="hero-sub">
-      <p>Conheça o melhor serviço de entretenimento com filmes, séries e canais 24h em alta qualidade.</p>
-    </div>
   </div>
+
+  <button id="pause-btn" aria-label="Pausar vídeo">⏸</button>
 </section>
 
 <section>
@@ -250,6 +259,56 @@ footer {
   © 2025 LunaTV Plus — Todos os direitos reservados.<br>
   Este site é apenas informativo e não realiza vendas.
 </footer>
+
+<script src="https://player.vimeo.com/api/player.js"></script>
+<script>
+const iframe = document.getElementById('vimeoPlayer');
+const player = new Vimeo.Player(iframe);
+const btn = document.getElementById('pause-btn');
+
+/* ============ Som ligado (com fallback de interação) ============ */
+function forceSoundAndPlay(){
+  player.setMuted(false).catch(()=>{});
+  player.setVolume(1).catch(()=>{});
+  player.play().catch(()=>{});
+}
+
+player.ready().then(() => {
+  // tenta ligar o som e tocar assim que carregar
+  forceSoundAndPlay();
+});
+
+// primeira interação do usuário: garante som ligado em qualquer navegador
+const unlock = () => {
+  forceSoundAndPlay();
+  // remove os listeners depois da primeira tentativa
+  document.removeEventListener('click', unlock);
+  document.removeEventListener('touchstart', unlock);
+  document.removeEventListener('keydown', unlock);
+};
+document.addEventListener('click', unlock, {once:true});
+document.addEventListener('touchstart', unlock, {once:true});
+document.addEventListener('keydown', unlock, {once:true});
+
+/* ============ Botão Pausar/Despausar ============ */
+btn.addEventListener('click', async () => {
+  try {
+    const isPaused = await player.getPaused();
+    if (isPaused) {
+      await player.play();
+      btn.textContent = '⏸';
+      btn.setAttribute('aria-label','Pausar vídeo');
+    } else {
+      await player.pause();
+      btn.textContent = '▶️';
+      btn.setAttribute('aria-label','Reproduzir vídeo');
+    }
+  } catch(e){
+    // se algo falhar (ex: player ainda não pronto), tenta forçar play
+    forceSoundAndPlay();
+  }
+});
+</script>
 
 </body>
 </html>
